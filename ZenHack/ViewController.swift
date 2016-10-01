@@ -158,10 +158,11 @@ class ViewController: UIViewController {
         
     }
     
+    // マイクボタンの押した時
     func microphonePressed() {
-        let vc = DrawableViewController()
-        vc.modalPresentationStyle = .OverFullScreen
-        presentViewController(vc, animated: true, completion: nil)  
+//        let vc = DrawableViewController()
+//        vc.modalPresentationStyle = .OverFullScreen
+//        presentViewController(vc, animated: true, completion: nil)  
     }
 }
 
