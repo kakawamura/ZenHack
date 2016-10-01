@@ -15,10 +15,19 @@ import Alamofire
 import AVFoundation
 import SVProgressHUD
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelegate{
     let disposeBag = DisposeBag()
 
     var datas = [Data]()
+    
+    let dataURLs = [
+        "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
+        "https://upload.wikimedia.org/wikipedia/en/b/b9/Love_Live!_promotional_image.jpg",
+        "http://www.lovelive-anime.jp/otonokizaka/img/release/cd_56a.jpg",
+        "http://i2.wp.com/funip.jp/wp-content/uploads/2014/04/56a1e59c8ae41baf92c59de4a6f06d53.jpg?resize=400%2C300",
+        "http://i.ytimg.com/vi/5krGxU5UA2g/maxresdefault.jpg",
+        "https://media.giphy.com/media/3o7abmKhQ80pURWbgQ/giphy.gif",
+    ]
     
     var verticalDataURLs = [
         "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
@@ -116,6 +125,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         self.inputTextField.backgroundColor = UIColor("#ffffff", 0.7)
         self.inputTextField.layer.cornerRadius = 4.0
         self.inputTextField.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+        inputTextField.delegate = self
         self.view.addSubview(inputTextField)
         inputTextField.snp_makeConstraints { (make) in
             make.top.equalTo(25.0)
@@ -313,10 +323,27 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 //        vc.modalPresentationStyle = .OverFullScreen
 //        presentViewController(vc, animated: true, completion: nil)  
     }
+    
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+    
+    
+
+    
+    //改行でキーボード閉じる
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        inputTextField.resignFirstResponder()
+        return true
+    }
 }
 
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        inputTextField.resignFirstResponder()
+    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if collectionView == imageListView {
@@ -346,13 +373,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             self.imageListView.scrollToItemAtIndexPath(i, atScrollPosition: .Top, animated: true)
         }
     }
+    
 }
 
 extension ViewController: UICollectionViewDataSource {
     
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
-        
         if collectionView == self.imageListView {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
             (cell as! ImageCell).drawable = true
