@@ -11,7 +11,7 @@ import Alamofire
 import AlamofireObjectMapper
 
 class DataModel {
-    let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
+    let URL = "https://raw.githubusercontent.com/kakawamura/ZenHack/master/sample.json"
 //    Alamofire.request(.GET, URL).responseObject { (response: DataResponse<WeatherResponse>) in
 //
 //    let weatherResponse = response.result.value
