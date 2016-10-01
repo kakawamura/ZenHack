@@ -196,8 +196,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             let url = self.dataURLs[indexPath.row]
             self.verticalDataURLs.append(url)
             self.imageListView.reloadData()
-//            let i = NSIndexPath(forRow: self.verticalDataURLs.count - 1, inSection: 0)
-//            self.imageListView.scrollToItemAtIndexPath(i, atScrollPosition: .Top, animated: true)
+            let i = NSIndexPath(forRow: self.verticalDataURLs.count - 1, inSection: 0)
+            self.imageListView.scrollToItemAtIndexPath(i, atScrollPosition: .Top, animated: true)
         }
     }
 }
@@ -209,6 +209,7 @@ extension ViewController: UICollectionViewDataSource {
         
         if collectionView == self.imageListView {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
+            (cell as! ImageCell).drawable = true
         } else {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: dataURLs[indexPath.row]))
         }
@@ -225,9 +226,6 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        if collectionView == imageListView {
-            return verticalDataURLs.count
-        }
         return 1
     }
     
