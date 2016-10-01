@@ -8,13 +8,14 @@
 
 
 import ObjectMapper
+import RxSwift
 
 // Entity Class
 
 class Data: Mappable {
-    var name: String?
-    var image: String?
-    var thumbnail: String?
+    var word: String?
+    var imgs: [String]?
+    var thumbnails: [String]?
     
     required init?(_ map: Map) {
         
@@ -22,8 +23,8 @@ class Data: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        name <- map["name"]
-        image <- map["image"]
-        thumbnail <- map["thumbnail"]
+        word <- map["word"]
+        imgs <- map["imgs"]
+        thumbnails <- map["thumbnails"]
     }
 }

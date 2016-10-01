@@ -11,17 +11,12 @@ import SnapKit
 import SDWebImage
 import RxSwift
 import FontAwesome_swift
+import Alamofire
 
 class ViewController: UIViewController {
+    let disposeBag = DisposeBag()
     
-    let dataURLs = [
-        "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
-        "https://upload.wikimedia.org/wikipedia/en/b/b9/Love_Live!_promotional_image.jpg",
-        "http://www.lovelive-anime.jp/otonokizaka/img/release/cd_56a.jpg",
-        "http://i2.wp.com/funip.jp/wp-content/uploads/2014/04/56a1e59c8ae41baf92c59de4a6f06d53.jpg?resize=400%2C300",
-        "http://i.ytimg.com/vi/5krGxU5UA2g/maxresdefault.jpg",
-        "https://media.giphy.com/media/3o7abmKhQ80pURWbgQ/giphy.gif",
-    ]
+    var datas = [Data]()
     
     var verticalDataURLs = [
         "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
@@ -34,13 +29,60 @@ class ViewController: UIViewController {
     // TODO: Standarize
     var inputTextField: UITextField!
     
+    var segmentView = UIView()
     var segmentControl = UISegmentedControl()
     var drawingControl = UISegmentedControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DataModel.fetchDatas()
+        
         self.setupHotizontalImage()
+        // let view
+        
+        segmentView = UISegmentedControl(frame: CGRectNull)
+        segmentView.backgroundColor = UIColor("#f1f1f1", 1.0)
+        self.view.addSubview(segmentView)
+        segmentView.snp_makeConstraints { (make) in
+            make.bottom.equalTo(imageCollectionView.snp_top)
+            make.left.right.equalTo(0)
+            make.height.equalTo(40)
+        }
+        
+        let array = ["me", "you"]
+        self.segmentControl = UISegmentedControl(items: array)
+        self.segmentControl.selectedSegmentIndex = 0
+        self.segmentControl.addTarget(self, action: #selector(segmentedControlChanged), forControlEvents: .ValueChanged)
+        segmentView.addSubview(segmentControl)
+        segmentControl.snp_makeConstraints { (make) in
+            make.bottom.equalTo(segmentView.snp_bottom).offset(-4)
+            make.left.equalTo(8)
+            make.height.equalTo(30)
+            make.width.equalTo(100)
+        }
+        
+        let d = ["draw", "normal"]
+        self.drawingControl = UISegmentedControl(items: d)
+        self.drawingControl.selectedSegmentIndex = 1
+        self.segmentControl.addTarget(self, action: #selector(segmentedControlChanged), forControlEvents: .ValueChanged)
+        self.drawingControl.addTarget(self, action: #selector(drawingControlChanged), forControlEvents: .ValueChanged)
+        segmentView.addSubview(drawingControl)
+        drawingControl.snp_makeConstraints { (make) in
+            make.bottom.equalTo(segmentView.snp_bottom).offset(-4)
+            make.right.equalTo(-8)
+            make.height.equalTo(30)
+            make.width.equalTo(100)
+        }
+        
+        let line = UIView()
+        line.backgroundColor = UIColor("#cccccc", 1.0)
+        self.view.addSubview(line)
+        line.snp_makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(segmentView.snp_top)
+            make.height.equalTo(1.0)
+        }
         
         self.setupVerticalImage()
         
@@ -78,27 +120,16 @@ class ViewController: UIViewController {
         
         self.microphoneButton.addTarget(self, action: #selector(microphonePressed), forControlEvents: .TouchUpInside)
         
-        let array = ["me", "you"]
-        self.segmentControl = UISegmentedControl(items: array)
-        self.segmentControl.addTarget(self, action: #selector(segmentedControlChanged), forControlEvents: .ValueChanged)
-        self.view.addSubview(segmentControl)
-        segmentControl.snp_makeConstraints { (make) in
-            make.bottom.equalTo(imageCollectionView.snp_top).offset(-4)
-            make.left.equalTo(4)
-            make.height.equalTo(30)
-            make.width.equalTo(100)
-        }
-        
-        let d = ["draw", "normal"]
-        self.drawingControl = UISegmentedControl(items: d)
-        self.drawingControl.addTarget(self, action: #selector(drawingControlChanged), forControlEvents: .ValueChanged)
-        self.view.addSubview(drawingControl)
-        drawingControl.snp_makeConstraints { (make) in
-            make.bottom.equalTo(imageCollectionView.snp_top).offset(-4)
-            make.right.equalTo(-4)
-            make.height.equalTo(30)
-            make.width.equalTo(100)
-        }
+      
+    
+        DataModel.fetchDatas()
+            .subscribe(
+                onNext: { [weak self](datas) in
+                    self?.datas = datas
+                    self?.imageCollectionView.reloadData()
+                }
+            )
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -127,7 +158,7 @@ class ViewController: UIViewController {
         
         self.imageCollectionView = UICollectionView(frame: CGRectNull, collectionViewLayout: layout)
         self.imageCollectionView.registerNib(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
-        self.imageCollectionView.backgroundColor = UIColor("#dddddd", 1.0)
+        self.imageCollectionView.backgroundColor = UIColor("#f1f1f1", 1.0)
         self.imageCollectionView.delegate = self
         self.imageCollectionView.dataSource = self
         self.view.addSubview(imageCollectionView)
@@ -153,7 +184,7 @@ class ViewController: UIViewController {
         self.view.addSubview(imageListView)
         self.imageListView.snp_makeConstraints { (make) in
             make.right.top.left.equalTo(0)
-            make.bottom.equalTo(self.imageCollectionView.snp_top)
+            make.bottom.equalTo(self.segmentView.snp_top)
         }
         
     }
@@ -182,11 +213,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        if collectionView == imageListView {
-            return UIEdgeInsetsMake(0, 120, 0, 0)
-        } else {
-            return UIEdgeInsetsZero
-        }
+        return UIEdgeInsetsZero
     }
     
     // on click
@@ -194,7 +221,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == imageListView {
             
         } else {
-            let url = self.dataURLs[indexPath.row]
+            let url = self.datas[indexPath.section].thumbnails![indexPath.row]
             self.verticalDataURLs.append(url)
             self.imageListView.reloadData()
             let i = NSIndexPath(forRow: self.verticalDataURLs.count - 1, inSection: 0)
@@ -212,7 +239,8 @@ extension ViewController: UICollectionViewDataSource {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
             (cell as! ImageCell).drawable = true
         } else {
-            (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: dataURLs[indexPath.row]))
+            print(datas[indexPath.row].thumbnails!.first!)
+            (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: datas[indexPath.section].thumbnails![indexPath.row]))
         }
         
         return cell
@@ -222,11 +250,15 @@ extension ViewController: UICollectionViewDataSource {
         if collectionView == self.imageListView {
             return verticalDataURLs.count
         } else {
-            return dataURLs.count
+            return datas[section].thumbnails!.count
         }
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if collectionView == imageCollectionView {
+            // section
+            return datas.count
+        }
         return 1
     }
     

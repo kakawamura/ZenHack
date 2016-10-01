@@ -9,18 +9,33 @@
 
 import Alamofire
 import AlamofireObjectMapper
+import RxSwift
 
 class DataModel {
-    let URL = "https://raw.githubusercontent.com/kakawamura/ZenHack/master/sample.json"
-//    Alamofire.request(.GET, URL).responseObject { (response: DataResponse<WeatherResponse>) in
-//
-//    let weatherResponse = response.result.value
-//    print(weatherResponse?.location)
-//    
-//    if let threeDayForecast = weatherResponse?.threeDayForecast {
-//    for forecast in threeDayForecast {
-//    print(forecast.day)
-//    print(forecast.temperature)
-//    }
-//    }
+    
+    
+    init() {
+        
+    }
+    
+    static func fetchDatas()  -> Observable<[Data]> {
+        return Observable.create({ (observer) -> Disposable in
+            let URL = "https://raw.githubusercontent.com/kakawamura/ZenHack/master/sample2.json"
+            
+            Alamofire.request(.GET, URL).responseArray { (response: Response<[Data], NSError>) in
+                switch response.result {
+                case .Success(let datas):
+                    observer.on(.Next(datas))
+                    observer.on(.Completed)
+                case .Failure(let error):
+                    observer.on(.Error(error))
+                }
+            }
+            
+            return AnonymousDisposable { }
+        })
+    
+    }
+    
 }
+
