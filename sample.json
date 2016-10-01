@@ -1,12 +1,40 @@
 [
     {
         "word" : "go",
-				"thumbnail" : "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
-				"image" : "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1"
+        "thumbnails" : [
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1"
+        ],
+        "imgs" : [
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1"
+        ]
     }, {
-   
-        "word" : "建長寺",
-				"thumbnail" : "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
-				"main" : "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1"
-    }
- ]
+        "word" : "Kenshoji",
+        "thumbnails" : [
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1"
+        ],
+        "imgs" : [
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1"
+        ]
+    }, {
+        "word" : "go",
+        "thumbnails" : [
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1",
+            "http:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=iz_Am4p9SDdLyd7qzHolBUBlsHNqJMMIx3m6hp3PrMc&v=1&r=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f27600000%2fC-C-cc-from-code-geass-27608916-985-985.jpg&p=DevEx,5194.1"
+        ],
+        "imgs" : [
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1",
+            "https:\/\/www.bing.com\/cr?IG=BBD7373D2B9B41789D393BAFE9E74426&CID=380DD9FB0D776FE12E93D05A0C656EBE&rd=1&h=H4btGu0XqTUKOws7KG_f13sIDshVn6rB_bkvpZ1giEU&v=1&r=https%3a%2f%2fwww.bing.com%2fimages%2fsearch%3fview%3ddetailv2%26FORM%3dOIIRPO%26q%3d%25c3%25a7%25c2%258a%25c2%25ac%26id%3d31E2B25CC7E7550B8CE5039F07453281A02F2ED3%26simid%3d607997001817194811&p=DevEx,5192.1"
+        ]
+    } 
+]
+
