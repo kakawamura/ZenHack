@@ -53,8 +53,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataModel.fetchDatas()
-        
         self.setupHotizontalImage()
         // let view
         
@@ -141,7 +139,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
       
     
-        DataModel.fetchDatas()
+        DataModel.fetchDatas("犬")
             .subscribe(
                 onNext: { [weak self](datas) in
                     self?.datas = datas
@@ -204,6 +202,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     func segmentedControlChanged(sender: UISegmentedControl) {
         print(sender.selectedSegmentIndex)
+        if sender.selectedSegmentIndex == 0 {
+        self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel"
+        } else {
+            self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=ja-JP_BroadbandModel"
+        }
     }
     
     func drawingControlChanged(sender: UISegmentedControl) {
@@ -277,6 +280,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
                     //----------------返答------------------
                     SVProgressHUD.dismiss()
                     self.inputTextField.text = self.watson.transcript
+                    DataModel.fetchDatas(self.inputTextField.text!)
+                        .subscribe(
+                            onNext: { [weak self](datas) in
+                                self?.datas = datas
+                                self?.imageListView.reloadData()
+                            }
+                        )
+                        .addDisposableTo(self.disposeBag)
                 })
             })
             print("録音完了&送信")
@@ -346,7 +357,6 @@ extension ViewController: UICollectionViewDataSource {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
             (cell as! ImageCell).drawable = true
         } else {
-            print(datas[indexPath.row].thumbnails![indexPath.row])
             let url = NSURL(string: datas[indexPath.section].thumbnails![indexPath.row])
             print(url)
             (cell as! ImageCell).imageView.sd_setImageWithURL(url)

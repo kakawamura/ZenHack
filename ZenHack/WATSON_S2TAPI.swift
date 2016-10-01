@@ -16,6 +16,8 @@ class WATSON_S2TAPI: NSObject {
     static let ud = NSUserDefaults.standardUserDefaults()
     static var IBMUname:String  = ""
     static var IBMPass:String   = ""
+    
+    var endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel"
 
     static func LoadKeySettings() {
         IBMUname  = ZeroLenTextIfNil(ud.objectForKey("IBMUname"))
@@ -82,11 +84,10 @@ class WATSON_S2TAPI: NSObject {
         let authString = "Basic \(base64EncodedCredential)"
         
         //英語
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: self.endpoint)!)
         
-        /*******日本語
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=ja-JP_BroadbandModel")!)
-        ********/
+        // Japanese
+//        let request = NSMutableURLRequest(URL: NSURL(string: "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=ja-JP_BroadbandModel")!)
         
         request.HTTPMethod = "POST"
         request.addValue(authString, forHTTPHeaderField: "Authorization")

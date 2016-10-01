@@ -20,7 +20,9 @@ class DataModel {
     
     static func fetchDatas(param: String = "go")  -> Observable<[Data]> {
         return Observable.create({ (observer) -> Disposable in
-            let URL = "http://54.191.66.113/img?lang=ja-jp&q=\(param)"
+//            let URL = "http://54.191.66.113/img?lang=ja-jp&q=\(param)"
+            var URL = "http://54.191.66.113/img?lang=ja-jp&q=犬"
+            URL = URL.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
             
             Alamofire.request(.GET, URL).responseArray { (response: Response<[Data], NSError>) in
                 switch response.result {

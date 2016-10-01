@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BE070C5B1DA050E8009DF5B4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE070C5A1DA050E8009DF5B4 /* Data.swift */; };
 		BE070C5D1DA0526C009DF5B4 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE070C5C1DA0526C009DF5B4 /* DataModel.swift */; };
+		BE1D97691DA0765700A7F1B9 /* WATSON_S2TAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D97681DA0765700A7F1B9 /* WATSON_S2TAPI.swift */; };
 		BE8F05881D9F9096006117F7 /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F05871D9F9096006117F7 /* UIColor+hexString.swift */; };
 		BE8F058A1D9F9FEA006117F7 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F05891D9F9FEA006117F7 /* ArrowButton.swift */; };
 		BE8F058C1D9FA888006117F7 /* DrawableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F058B1D9FA888006117F7 /* DrawableView.swift */; };
@@ -50,6 +51,7 @@
 		555C1E01525EFC415CB2BC73 /* Pods-ZenHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenHack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZenHack/Pods-ZenHack.debug.xcconfig"; sourceTree = "<group>"; };
 		BE070C5A1DA050E8009DF5B4 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		BE070C5C1DA0526C009DF5B4 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		BE1D97681DA0765700A7F1B9 /* WATSON_S2TAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WATSON_S2TAPI.swift; sourceTree = "<group>"; };
 		BE8F05871D9F9096006117F7 /* UIColor+hexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		BE8F05891D9F9FEA006117F7 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		BE8F058B1D9FA888006117F7 /* DrawableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			name = "お絵描き";
 			sourceTree = "<group>";
 		};
+		BE1D97671DA0764D00A7F1B9 /* voice */ = {
+			isa = PBXGroup;
+			children = (
+				BE1D97681DA0765700A7F1B9 /* WATSON_S2TAPI.swift */,
+			);
+			name = voice;
+			sourceTree = "<group>";
+		};
 		BE8F05861D9F9083006117F7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 		BEF808151D9F7AEA00C1139C /* ZenHack */ = {
 			isa = PBXGroup;
 			children = (
+				BE1D97671DA0764D00A7F1B9 /* voice */,
 				BE1C7ACD1D9FAF140050B8AE /* お絵描き */,
 				BE8F05861D9F9083006117F7 /* Helper */,
 				BEF8082A1D9F8BA100C1139C /* Models */,
@@ -377,6 +388,7 @@
 				BE8F058A1D9F9FEA006117F7 /* ArrowButton.swift in Sources */,
 				BE8F05881D9F9096006117F7 /* UIColor+hexString.swift in Sources */,
 				BE070C5D1DA0526C009DF5B4 /* DataModel.swift in Sources */,
+				BE1D97691DA0765700A7F1B9 /* WATSON_S2TAPI.swift in Sources */,
 				BEB68D391D9F8CEA0007CB84 /* ImageCell.swift in Sources */,
 				BEF808171D9F7AEA00C1139C /* AppDelegate.swift in Sources */,
 				BE070C5B1DA050E8009DF5B4 /* Data.swift in Sources */,
