@@ -11,8 +11,10 @@ import SnapKit
 import SDWebImage
 import RxSwift
 import FontAwesome_swift
+import AVFoundation
+import SVProgressHUD
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     let dataURLs = [
         "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
@@ -26,6 +28,14 @@ class ViewController: UIViewController {
     var verticalDataURLs = [
         "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
     ]
+    //-----------マイク用
+    let fileManager = NSFileManager()
+    var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer?
+    var now_recording = false
+    let fileName = "sample.wav"
+    let watson = WATSON_S2TAPI()
+
     
     var imageCollectionView: UICollectionView!
     var arrowButton: ArrowButton!
@@ -36,6 +46,13 @@ class ViewController: UIViewController {
     
     var segmentControl = UISegmentedControl()
     var drawingControl = UISegmentedControl()
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        WATSON_S2TAPI.IBMUname = "39f05951-139e-469a-babe-aba2c47e50f4"
+        WATSON_S2TAPI.IBMPass = "7MlOotFadHE8"
+        WATSON_S2TAPI.upateKeySettings()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +60,8 @@ class ViewController: UIViewController {
         self.setupHotizontalImage()
         
         self.setupVerticalImage()
+        
+        WATSON_S2TAPI.LoadKeySettings()
         
 //        arrowButton = ArrowButton(frame: CGRectNull)
 //        self.view.addSubview(arrowButton)
@@ -105,6 +124,53 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func setUpPlayer() {
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: self.documentFilePath())
+            audioPlayer!.delegate = self
+            audioPlayer!.prepareToPlay()
+        } catch {
+            print("AVAudioPlayerの作成に失敗")
+        }
+    }
+    
+    // 録音するために必要な設定を行う
+    func setupAudioRecorder() {
+        // 再生と録音機能をアクティブにする
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try! session.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
+        try! session.setActive(true)
+        let recordSetting : [String : AnyObject] = [
+            AVFormatIDKey:Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 44100.0,
+            AVNumberOfChannelsKey: 2,
+            AVEncoderBitRateKey : 16,
+            AVLinearPCMIsFloatKey:false,
+            AVLinearPCMIsBigEndianKey:false,
+            AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue
+        ]
+        do {
+            try audioRecorder = AVAudioRecorder(URL: self.documentFilePath(), settings: recordSetting)
+            audioRecorder?.prepareToRecord()
+        } catch {
+            print("初期設定でerror")
+        }
+    }
+    
+    // 録音するファイルのパスを取得(録音時、再生時に参照)
+    func documentFilePath()-> NSURL {
+        let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask) as [NSURL]
+        let dirURL = urls[0]
+        return dirURL.URLByAppendingPathComponent(fileName)
+    }
+    
+    // 音声の再生が終了すると呼ばれる(今は何もしない)
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer,
+                                     successfully flag: Bool) {
+    }
+    
+    
     func segmentedControlChanged(sender: UISegmentedControl) {
         print(sender.selectedSegmentIndex)
     }
@@ -160,6 +226,47 @@ class ViewController: UIViewController {
     
     // マイクボタンの押した時
     func microphonePressed() {
+        self.setupAudioRecorder()
+        self.audioRecorder?.record()
+        self.now_recording = true
+        
+        let alert: UIAlertController = UIAlertController(title: "録音中", message: "録音後送信して下さい", preferredStyle:  UIAlertControllerStyle.Alert)
+        
+        // アラートのOK押下時の処理
+        let defaultAction: UIAlertAction = UIAlertAction(title: "送信", style: UIAlertActionStyle.Default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            //SVProgressHUD.showWithStatus("解析中...")
+            self.audioRecorder?.stop()
+            self.now_recording = false
+            self.setUpPlayer()
+            
+            self.watson.send(self.documentFilePath(), callback: {_,_,_ in
+                dispatch_async(dispatch_get_main_queue(),{
+                    //----------------返答------------------
+                    SVProgressHUD.dismiss()
+                    self.inputTextField.text = self.watson.transcript
+                })
+            })
+            print("録音完了&送信")
+        })
+        
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            self.audioRecorder?.stop()
+            self.now_recording = false
+            print("Cancel")
+        })
+        
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        // ④ Alertを表示
+        presentViewController(alert, animated: true, completion: nil)
+        
 //        let vc = DrawableViewController()
 //        vc.modalPresentationStyle = .OverFullScreen
 //        presentViewController(vc, animated: true, completion: nil)  
