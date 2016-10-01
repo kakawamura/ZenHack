@@ -12,4 +12,5 @@ target 'ZenHack' do
   pod 'FontAwesome.swift'
   pod 'AlamofireObjectMapper', '~> 3.0.2'
   pod 'Alamofire', '~> 3.5.0'
+  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 end
