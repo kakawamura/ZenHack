@@ -14,7 +14,7 @@ import FontAwesome_swift
 import AVFoundation
 import SVProgressHUD
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelegate{
     
     let dataURLs = [
         "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
@@ -76,6 +76,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         self.inputTextField.backgroundColor = UIColor("#ffffff", 0.7)
         self.inputTextField.layer.cornerRadius = 4.0
         self.inputTextField.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+        inputTextField.delegate = self
         self.view.addSubview(inputTextField)
         inputTextField.snp_makeConstraints { (make) in
             make.top.equalTo(25.0)
@@ -271,10 +272,27 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 //        vc.modalPresentationStyle = .OverFullScreen
 //        presentViewController(vc, animated: true, completion: nil)  
     }
+    
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+    
+    
+
+    
+    //改行でキーボード閉じる
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        inputTextField.resignFirstResponder()
+        return true
+    }
 }
 
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        inputTextField.resignFirstResponder()
+    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if collectionView == imageListView {
@@ -308,13 +326,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             self.imageListView.scrollToItemAtIndexPath(i, atScrollPosition: .Top, animated: true)
         }
     }
+    
 }
 
 extension ViewController: UICollectionViewDataSource {
     
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
-        
         if collectionView == self.imageListView {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
             (cell as! ImageCell).drawable = true
