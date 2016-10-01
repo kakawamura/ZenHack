@@ -18,9 +18,9 @@ class DataModel {
         
     }
     
-    static func fetchDatas()  -> Observable<[Data]> {
+    static func fetchDatas(param: String = "go")  -> Observable<[Data]> {
         return Observable.create({ (observer) -> Disposable in
-            let URL = "https://raw.githubusercontent.com/kakawamura/ZenHack/master/sample2.json"
+            let URL = "http://54.191.66.113/img?lang=ja-jp&q=\(param)"
             
             Alamofire.request(.GET, URL).responseArray { (response: Response<[Data], NSError>) in
                 switch response.result {

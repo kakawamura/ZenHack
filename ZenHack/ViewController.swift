@@ -239,8 +239,10 @@ extension ViewController: UICollectionViewDataSource {
             (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
             (cell as! ImageCell).drawable = true
         } else {
-            print(datas[indexPath.row].thumbnails!.first!)
-            (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: datas[indexPath.section].thumbnails![indexPath.row]))
+            print(datas[indexPath.row].thumbnails![indexPath.row])
+            let url = NSURL(string: datas[indexPath.section].thumbnails![indexPath.row])
+            print(url)
+            (cell as! ImageCell).imageView.sd_setImageWithURL(url)
         }
         
         return cell

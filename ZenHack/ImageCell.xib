@@ -8,14 +8,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yMl-p4-PZH" customClass="ImageCell" customModule="ZenHack" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="257" height="220"/>
+            <rect key="frame" x="0.0" y="0.0" width="286" height="259"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="257" height="220"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="259"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-F9-DFU">
-                        <rect key="frame" x="8" y="8" width="242" height="204"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju9-CV-EW7">
+                        <rect key="frame" x="21" y="8" width="42" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-F9-DFU">
+                        <rect key="frame" x="22" y="41" width="242" height="204"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -27,11 +33,11 @@
                 <constraint firstItem="IVb-F9-DFU" firstAttribute="leading" secondItem="yMl-p4-PZH" secondAttribute="leading" constant="8" id="e9l-ic-6wy"/>
                 <constraint firstAttribute="bottom" secondItem="IVb-F9-DFU" secondAttribute="bottom" constant="8" id="kjq-CK-x7K"/>
             </constraints>
-            <size key="customSize" width="257" height="220"/>
+            <size key="customSize" width="286" height="259"/>
             <connections>
                 <outlet property="imageView" destination="IVb-F9-DFU" id="MsV-yg-Aaw"/>
             </connections>
-            <point key="canvasLocation" x="378.5" y="308"/>
+            <point key="canvasLocation" x="196" y="327.5"/>
         </collectionViewCell>
     </objects>
 </document>
