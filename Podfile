@@ -11,4 +11,5 @@ target 'ZenHack' do
   pod 'SnapKit', '~> 0.22.0'
   pod 'FontAwesome.swift'
   pod 'AlamofireObjectMapper', '~> 3.0.2'
+  pod 'Alamofire', '~> 3.5.0'
 end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE070C5B1DA050E8009DF5B4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE070C5A1DA050E8009DF5B4 /* Data.swift */; };
+		BE070C5D1DA0526C009DF5B4 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE070C5C1DA0526C009DF5B4 /* DataModel.swift */; };
 		BE8F05881D9F9096006117F7 /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F05871D9F9096006117F7 /* UIColor+hexString.swift */; };
 		BE8F058A1D9F9FEA006117F7 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F05891D9F9FEA006117F7 /* ArrowButton.swift */; };
 		BE8F058C1D9FA888006117F7 /* DrawableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8F058B1D9FA888006117F7 /* DrawableView.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		08D97A8953B6B0DDB25A04C8 /* Pods-ZenHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenHack.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZenHack/Pods-ZenHack.release.xcconfig"; sourceTree = "<group>"; };
 		555C1E01525EFC415CB2BC73 /* Pods-ZenHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenHack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZenHack/Pods-ZenHack.debug.xcconfig"; sourceTree = "<group>"; };
+		BE070C5A1DA050E8009DF5B4 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BE070C5C1DA0526C009DF5B4 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		BE8F05871D9F9096006117F7 /* UIColor+hexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		BE8F05891D9F9FEA006117F7 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		BE8F058B1D9FA888006117F7 /* DrawableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 		BEF8082A1D9F8BA100C1139C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BE070C5A1DA050E8009DF5B4 /* Data.swift */,
+				BE070C5C1DA0526C009DF5B4 /* DataModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -278,8 +284,10 @@
 				BEF808191D9F7AEA00C1139C /* ViewController.swift in Sources */,
 				BE8F058A1D9F9FEA006117F7 /* ArrowButton.swift in Sources */,
 				BE8F05881D9F9096006117F7 /* UIColor+hexString.swift in Sources */,
+				BE070C5D1DA0526C009DF5B4 /* DataModel.swift in Sources */,
 				BEB68D391D9F8CEA0007CB84 /* ImageCell.swift in Sources */,
 				BEF808171D9F7AEA00C1139C /* AppDelegate.swift in Sources */,
+				BE070C5B1DA050E8009DF5B4 /* Data.swift in Sources */,
 				BEB68D371D9F8CDD0007CB84 /* ImagesCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
