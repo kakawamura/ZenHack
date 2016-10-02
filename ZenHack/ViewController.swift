@@ -149,18 +149,22 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
         
       
         // Buttonの定義.
-        let myButton = UIButton()
-        myButton.frame = CGRectMake(0,0,200,40)
-        myButton.backgroundColor = UIColor.redColor();
-        myButton.layer.masksToBounds = true
-        myButton.setTitle("アルバムを作成", forState: UIControlState.Normal)
-        myButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        myButton.layer.cornerRadius = 20.0
-        myButton.layer.position = CGPoint(x: self.view.frame.width/2, y:200)
+        let myButton = UIButton(frame: CGRectNull)
+        
+        myButton.titleLabel?.font = UIFont.fontAwesomeOfSize(15)
+        myButton.setTitle(String.fontAwesomeIconWithCode("fa-save"), forState: .Normal)
+        myButton.setTitleColor(UIColor("#007aff", 1.0), forState: .Normal)
+        myButton.layer.cornerRadius = 10
+        myButton.layer.borderWidth = 1
+        myButton.layer.borderColor = UIColor("#007aff", 1.0)?.CGColor
         myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(_:)), forControlEvents: .TouchUpInside)
         
         // UIボタンをViewに追加.
-        self.view.addSubview(myButton)
+        self.segmentView.addSubview(myButton)
+        
+        myButton.snp_makeConstraints { (make) in
+            make.center.equalTo(segmentView)
+        }
         
         
         
@@ -208,9 +212,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
         // OKのアクションを作成.
         myOKAction = UIAlertAction(title: "OK", style: .Default) { action in
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-                
-                // iOSのフォトアルバムにコレクション(アルバム)を追加する.
-                self.request = PHCollectionListChangeRequest.creationRequestForCollectionListWithTitle(self.text)
                 
                 }, completionHandler: { (isSuccess, error) -> Void in
                     
