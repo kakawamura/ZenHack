@@ -47,6 +47,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
     var segmentControl = UISegmentedControl()
     var drawingControl = UISegmentedControl()
     
+    var isJap = false
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         WATSON_S2TAPI.IBMUname = "39f05951-139e-469a-babe-aba2c47e50f4"
@@ -199,8 +201,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
     func segmentedControlChanged(sender: UISegmentedControl) {
         print(sender.selectedSegmentIndex)
         if sender.selectedSegmentIndex == 0 {
-        self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel"
+            self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel"
+            self.isJap = true
+            
         } else {
+            self.isJap = false
             self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=ja-JP_BroadbandModel"
         }
     }
@@ -276,7 +281,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
                     //----------------返答------------------
                     SVProgressHUD.dismiss()
                     self.inputTextField.text = self.watson.transcript
-                    DataModel.fetchDatas(self.inputTextField.text!)
+                    DataModel.fetchDatas(self.inputTextField.text!, jap: self.isJap)
                         .subscribe(
                             onNext: { [weak self](datas) in
                                 print(datas)
