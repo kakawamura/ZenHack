@@ -217,60 +217,31 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
                     if isSuccess == true {
                         print("Success!")
                         //--------------アルバムに保存
-//                        //savingView配下のeditingPhoto等を1枚の画像として保存
-//                        UIGraphicsBeginImageContextWithOptions(self.imageListView.frame.size, false, 0)
-//                        self.imageListView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-//                        print("保存")
-//                        
-//                        let exportImage = UIGraphicsGetImageFromCurrentImageContext()
-//                        
-//                        UIGraphicsEndImageContext()
-//                        
-//                        //アルバム名を指定する
-//                        let albumTitle = "abc"//self.text
-//                        print(self.text)
-//                        
-//                        var theAlbum: PHAssetCollection?
-//                        
-//                        // アルバムを検索
-//                        let result = PHAssetCollection.fetchAssetCollectionsWithType(PHAssetCollectionType.Album, subtype: PHAssetCollectionSubtype.Any, options: nil)
-//                        result.enumerateObjectsUsingBlock({(object, index, stop) in
-//                            if let theCollection = object as? PHAssetCollection where
-//                                theCollection.localizedTitle == albumTitle
-//                            {
-//                                theAlbum = theCollection
-//                                print("アルバム検索")
-//                            }
-//                        })
-//                        // アルバムにイメージを保存
-//                        if let anAlbum = theAlbum {
-//                            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-//                                let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(exportImage)
-//                                let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset!
-//                                let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: anAlbum)
-//                                albumChangeRequest!.addAssets([assetPlaceholder])
-//                                }, completionHandler: nil)
-//                            print("save image into the Album.")
-//                        }
                         let albumTitle = self.text // アルバム名
-                        let savingImage = //UIImage(named: "a.png")! // 保存するイメージ
-                        PhotoAlbumUtil.saveImageInAlbum(savingImage, albumName: albumTitle, completion: { (result) in
-                            switch result {
-                            case .SUCCESS:
-                                // 保存に成功した時
-                                break
-                            case .ERROR:
-                                // 保存orアルバム生成orアルバムに追加が失敗した時
-                                break
-                            case .DENIED:
-                                // アプリ内で写真へのアクセス認証を一度も行っていないか、認証が許可されなかった時
-                                break
-                            default:
-                                break
+                        for v in self.verticalDataURLs {
+                            if let imageUrl:NSURL = NSURL(string:v.url!)! {
+                                if let data = NSData(contentsOfURL: imageUrl) {
+                                    let savingImage = UIImage(data: data)
+                                    PhotoAlbumUtil.saveImageInAlbum(savingImage!, albumName: albumTitle, completion: { (result) in
+                                        switch result {
+                                        case .SUCCESS:
+                                            // 保存に成功した時
+                                            print("成功")
+                                            break
+                                        case .ERROR:
+                                            // 保存orアルバム生成orアルバムに追加が失敗した時
+                                            print("失敗")
+                                            break
+                                        case .DENIED:
+                                            // アプリ内で写真へのアクセス認証を一度も行っていないか、認証が許可されなかった時
+                                            break
+                                        default:
+                                            break
+                                        }
+                                    })
+                                }
                             }
-                        })
-                        
-                        
+                        }
                     }
                     else{
                         print("error occured")
