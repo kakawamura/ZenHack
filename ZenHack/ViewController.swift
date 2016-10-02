@@ -14,8 +14,19 @@ import FontAwesome_swift
 import Alamofire
 import AVFoundation
 import SVProgressHUD
+import Photos
 
 class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelegate{
+    // ユーザーへの許可のリクエスト.
+    var request : PHCollectionListChangeRequest!
+    // アラート.
+    var myAlert : UIAlertController!
+    // AlertのOKAction.
+    var myOKAction : UIAlertAction!
+    // アルバム名を保存するtext.
+    var text : String!
+    
+    
     let disposeBag = DisposeBag()
 
     var datas = [Data]()
@@ -61,6 +72,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.setupHotizontalImage()
         // let view
@@ -148,6 +160,22 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
         self.microphoneButton.addTarget(self, action: #selector(microphonePressed), forControlEvents: .TouchUpInside)
         
       
+        // Buttonの定義.
+        let myButton = UIButton()
+        myButton.frame = CGRectMake(0,0,200,40)
+        myButton.backgroundColor = UIColor.redColor();
+        myButton.layer.masksToBounds = true
+        myButton.setTitle("アルバムを作成", forState: UIControlState.Normal)
+        myButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        myButton.layer.cornerRadius = 20.0
+        myButton.layer.position = CGPoint(x: self.view.frame.width/2, y:200)
+        myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(_:)), forControlEvents: .TouchUpInside)
+        
+        // UIボタンをViewに追加.
+        self.view.addSubview(myButton)
+        
+        
+        
     
         DataModel.fetchDatas("犬")
             .subscribe(
@@ -162,6 +190,150 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //----------------アルバム⬇︎
+    /*
+     ボタンイベント.
+     */
+    func onClickMyButton(sender: UIButton){
+        //PhotoKitの使用をユーザーから許可を得る.
+        PHPhotoLibrary.requestAuthorization { (status) -> Void in
+            switch(status){
+            case .Authorized:
+                print("Authorized")
+                
+            case .Denied:
+                print("Denied")
+                
+            case .NotDetermined:
+                print("NotDetermined")
+                
+            case .Restricted:
+                print("Restricted")
+            }
+        }
+        
+        
+        // UIAlertControllerを作成.
+        myAlert = UIAlertController(title: "思い出を保存♪", message: "アルバム名を入力", preferredStyle: .Alert)
+        
+        // OKのアクションを作成.
+        myOKAction = UIAlertAction(title: "OK", style: .Default) { action in
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                
+                // iOSのフォトアルバムにコレクション(アルバム)を追加する.
+                self.request = PHCollectionListChangeRequest.creationRequestForCollectionListWithTitle(self.text)
+                
+                }, completionHandler: { (isSuccess, error) -> Void in
+                    
+                    if isSuccess == true {
+                        print("Success!")
+                        //--------------アルバムに保存
+//                        //savingView配下のeditingPhoto等を1枚の画像として保存
+//                        UIGraphicsBeginImageContextWithOptions(self.imageListView.frame.size, false, 0)
+//                        self.imageListView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+//                        print("保存")
+//                        
+//                        let exportImage = UIGraphicsGetImageFromCurrentImageContext()
+//                        
+//                        UIGraphicsEndImageContext()
+//                        
+//                        //アルバム名を指定する
+//                        let albumTitle = "abc"//self.text
+//                        print(self.text)
+//                        
+//                        var theAlbum: PHAssetCollection?
+//                        
+//                        // アルバムを検索
+//                        let result = PHAssetCollection.fetchAssetCollectionsWithType(PHAssetCollectionType.Album, subtype: PHAssetCollectionSubtype.Any, options: nil)
+//                        result.enumerateObjectsUsingBlock({(object, index, stop) in
+//                            if let theCollection = object as? PHAssetCollection where
+//                                theCollection.localizedTitle == albumTitle
+//                            {
+//                                theAlbum = theCollection
+//                                print("アルバム検索")
+//                            }
+//                        })
+//                        // アルバムにイメージを保存
+//                        if let anAlbum = theAlbum {
+//                            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+//                                let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(exportImage)
+//                                let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset!
+//                                let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: anAlbum)
+//                                albumChangeRequest!.addAssets([assetPlaceholder])
+//                                }, completionHandler: nil)
+//                            print("save image into the Album.")
+//                        }
+                        let albumTitle = self.text // アルバム名
+                        let savingImage = //UIImage(named: "a.png")! // 保存するイメージ
+                        PhotoAlbumUtil.saveImageInAlbum(savingImage, albumName: albumTitle, completion: { (result) in
+                            switch result {
+                            case .SUCCESS:
+                                // 保存に成功した時
+                                break
+                            case .ERROR:
+                                // 保存orアルバム生成orアルバムに追加が失敗した時
+                                break
+                            case .DENIED:
+                                // アプリ内で写真へのアクセス認証を一度も行っていないか、認証が許可されなかった時
+                                break
+                            default:
+                                break
+                            }
+                        })
+                        
+                        
+                    }
+                    else{
+                        print("error occured")
+                    }
+                    
+            })
+        }
+        
+        // OKボタンを押せないようにする.
+        //myOKAction.enabled = false
+        
+        // キャンセルのアクションを作成.
+        let myNoAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action) -> Void in
+            print("cancel")
+        }
+        
+        // タイトルを入力する用のTextFieldをAlertに追加する.
+        myAlert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            
+            // 編集が終わる(returnキーが押される)とメソッドが呼び出される.
+            textField.addTarget(self, action: #selector(ViewController.onTextEnter(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
+        }
+        
+        myAlert.addAction(myOKAction)
+        myAlert.addAction(myNoAction)
+        
+        // UIAlertを発動する.
+        presentViewController(myAlert, animated: true, completion: nil)
+    }
+    
+    /*
+     TextFieldのTextの編集が終了した時に呼ばれるメソッド.
+     */
+    func onTextEnter(sender : UITextField){
+        
+        text = sender.text
+        myOKAction.enabled = true
+        
+    }
+    
+    //----------------アルバム⬆︎
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func setUpPlayer() {
         do {

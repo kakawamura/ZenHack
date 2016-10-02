@@ -43,6 +43,10 @@
 		D2C0CC971DA057C000C53529 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = D2C0CC821DA057C000C53529 /* Icon-Small.png */; };
 		D2C0CC981DA057C000C53529 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2C0CC831DA057C000C53529 /* Icon-Small@2x.png */; };
 		D2C0CC991DA057C000C53529 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2C0CC841DA057C000C53529 /* Icon-Small@3x.png */; };
+		D2E11BE01DA08D3C004302BA /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E11BDF1DA08D3C004302BA /* a.png */; };
+		D2E11BE21DA08EB0004302BA /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E11BE11DA08EB0004302BA /* PhotoAlbum.swift */; };
+		D2E11BE41DA09200004302BA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E11BE31DA09200004302BA /* Photos.framework */; };
+		D2E11BE61DA09214004302BA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E11BE51DA09214004302BA /* AssetsLibrary.framework */; };
 		F594DA2048E3665E9C3F4439 /* Pods_ZenHack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDC3A7272255ED35877EA4B /* Pods_ZenHack.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +91,10 @@
 		D2C0CC821DA057C000C53529 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		D2C0CC831DA057C000C53529 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		D2C0CC841DA057C000C53529 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		D2E11BDF1DA08D3C004302BA /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
+		D2E11BE11DA08EB0004302BA /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		D2E11BE31DA09200004302BA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		D2E11BE51DA09214004302BA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DFDC3A7272255ED35877EA4B /* Pods_ZenHack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZenHack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E11BE61DA09214004302BA /* AssetsLibrary.framework in Frameworks */,
+				D2E11BE41DA09200004302BA /* Photos.framework in Frameworks */,
 				F594DA2048E3665E9C3F4439 /* Pods_ZenHack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +115,8 @@
 		46B4077E718ACD19FDCCF89F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2E11BE51DA09214004302BA /* AssetsLibrary.framework */,
+				D2E11BE31DA09200004302BA /* Photos.framework */,
 				DFDC3A7272255ED35877EA4B /* Pods_ZenHack.framework */,
 			);
 			name = Frameworks;
@@ -168,6 +180,7 @@
 				BEF8081D1D9F7AEA00C1139C /* Assets.xcassets */,
 				BEF8081F1D9F7AEA00C1139C /* LaunchScreen.storyboard */,
 				BEF808221D9F7AEA00C1139C /* Info.plist */,
+				D2E11BE71DA09340004302BA /* album */,
 			);
 			path = ZenHack;
 			sourceTree = "<group>";
@@ -186,6 +199,7 @@
 		BEF808291D9F8B9000C1139C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D2E11BDF1DA08D3C004302BA /* a.png */,
 				BEF808181D9F7AEA00C1139C /* ViewController.swift */,
 			);
 			name = ViewControllers;
@@ -237,6 +251,14 @@
 			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
+		D2E11BE71DA09340004302BA /* album */ = {
+			isa = PBXGroup;
+			children = (
+				D2E11BE11DA08EB0004302BA /* PhotoAlbum.swift */,
+			);
+			name = album;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,7 +294,7 @@
 				TargetAttributes = {
 					BEF808121D9F7AEA00C1139C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = TZAW4YVS6J;
+						DevelopmentTeam = 7CFPLNDE4E;
 					};
 				};
 			};
@@ -299,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E11BE01DA08D3C004302BA /* a.png in Resources */,
 				D2C0CC851DA057C000C53529 /* Contents.json in Resources */,
 				D2C0CC901DA057C000C53529 /* Icon-ipad-Small-40@2x.png in Resources */,
 				D2C0CC8B1DA057C000C53529 /* Icon-ipad-72@2x.png in Resources */,
@@ -384,6 +407,7 @@
 			files = (
 				BE8F058E1D9FA89F006117F7 /* DrawableViewController.swift in Sources */,
 				BE8F058C1D9FA888006117F7 /* DrawableView.swift in Sources */,
+				D2E11BE21DA08EB0004302BA /* PhotoAlbum.swift in Sources */,
 				BEF808191D9F7AEA00C1139C /* ViewController.swift in Sources */,
 				BE8F058A1D9F9FEA006117F7 /* ArrowButton.swift in Sources */,
 				BE8F05881D9F9096006117F7 /* UIColor+hexString.swift in Sources */,
