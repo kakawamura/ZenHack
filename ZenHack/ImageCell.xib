@@ -14,30 +14,44 @@
                 <rect key="frame" x="0.0" y="0.0" width="286" height="259"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju9-CV-EW7">
-                        <rect key="frame" x="21" y="8" width="42" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-F9-DFU">
-                        <rect key="frame" x="22" y="41" width="242" height="204"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-F9-DFU">
+                        <rect key="frame" x="8" y="8" width="270" height="243"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okT-CG-yF6">
+                        <rect key="frame" x="10" y="10" width="50" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ju9-CV-EW7">
+                                <rect key="frame" x="7.5" y="6" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40697030141843971" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="2HX-Z6-YrQ"/>
+                            <constraint firstItem="Ju9-CV-EW7" firstAttribute="centerX" secondItem="okT-CG-yF6" secondAttribute="centerX" id="PBf-oW-ifG"/>
+                            <constraint firstItem="Ju9-CV-EW7" firstAttribute="centerY" secondItem="okT-CG-yF6" secondAttribute="centerY" id="cgB-oM-s05"/>
+                            <constraint firstAttribute="width" constant="50" id="eGZ-wq-Qg1"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="IVb-F9-DFU" firstAttribute="centerY" secondItem="yMl-p4-PZH" secondAttribute="centerY" id="16c-ED-C2D"/>
-                <constraint firstItem="IVb-F9-DFU" firstAttribute="centerX" secondItem="yMl-p4-PZH" secondAttribute="centerX" id="OyL-Sl-0qb"/>
-                <constraint firstItem="IVb-F9-DFU" firstAttribute="top" secondItem="yMl-p4-PZH" secondAttribute="top" constant="8" id="YPc-Gy-fRW"/>
-                <constraint firstItem="IVb-F9-DFU" firstAttribute="leading" secondItem="yMl-p4-PZH" secondAttribute="leading" constant="8" id="e9l-ic-6wy"/>
-                <constraint firstAttribute="bottom" secondItem="IVb-F9-DFU" secondAttribute="bottom" constant="8" id="kjq-CK-x7K"/>
+                <constraint firstAttribute="trailing" secondItem="IVb-F9-DFU" secondAttribute="trailing" constant="8" id="3TX-bc-oEs"/>
+                <constraint firstItem="IVb-F9-DFU" firstAttribute="leading" secondItem="yMl-p4-PZH" secondAttribute="leading" constant="8" id="EIR-Ib-62s"/>
+                <constraint firstItem="okT-CG-yF6" firstAttribute="leading" secondItem="yMl-p4-PZH" secondAttribute="leading" constant="10" id="NL8-w4-HIi"/>
+                <constraint firstItem="IVb-F9-DFU" firstAttribute="top" secondItem="yMl-p4-PZH" secondAttribute="top" constant="8" id="PxW-64-qDh"/>
+                <constraint firstItem="okT-CG-yF6" firstAttribute="top" secondItem="yMl-p4-PZH" secondAttribute="top" constant="10" id="Szb-t7-ryH"/>
+                <constraint firstAttribute="bottom" secondItem="IVb-F9-DFU" secondAttribute="bottom" constant="8" id="oXj-a0-C3c"/>
             </constraints>
             <size key="customSize" width="286" height="259"/>
             <connections>
                 <outlet property="imageView" destination="IVb-F9-DFU" id="MsV-yg-Aaw"/>
+                <outlet property="nameLabel" destination="Ju9-CV-EW7" id="nLw-i5-IRf"/>
             </connections>
-            <point key="canvasLocation" x="196" y="327.5"/>
+            <point key="canvasLocation" x="186" y="143.5"/>
         </collectionViewCell>
     </objects>
 </document>
