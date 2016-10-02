@@ -11,6 +11,7 @@ import UIKit
 class ImageCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     let vc = DrawableViewController()
     var drawable: Bool = false {

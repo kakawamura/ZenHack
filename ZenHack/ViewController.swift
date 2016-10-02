@@ -15,23 +15,18 @@ import Alamofire
 import AVFoundation
 import SVProgressHUD
 
+class VerData {
+    var name: String? = ""
+    var url: String? = ""
+}
+
 class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelegate{
     let disposeBag = DisposeBag()
 
     var datas = [Data]()
     
-    let dataURLs = [
-        "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
-        "https://upload.wikimedia.org/wikipedia/en/b/b9/Love_Live!_promotional_image.jpg",
-        "http://www.lovelive-anime.jp/otonokizaka/img/release/cd_56a.jpg",
-        "http://i2.wp.com/funip.jp/wp-content/uploads/2014/04/56a1e59c8ae41baf92c59de4a6f06d53.jpg?resize=400%2C300",
-        "http://i.ytimg.com/vi/5krGxU5UA2g/maxresdefault.jpg",
-        "https://media.giphy.com/media/3o7abmKhQ80pURWbgQ/giphy.gif",
-    ]
+    var verticalDataURLs = [VerData]()
     
-    var verticalDataURLs = [
-        "http://shakuhachi-genkai.com/images/photo/Land02-01.jpg",
-    ]
     //-----------マイク用
     let fileManager = NSFileManager()
     var audioRecorder: AVAudioRecorder?
@@ -111,15 +106,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
         self.setupVerticalImage()
         
         WATSON_S2TAPI.LoadKeySettings()
-        
-//        arrowButton = ArrowButton(frame: CGRectNull)
-//        self.view.addSubview(arrowButton)
-//        arrowButton.snp_makeConstraints { (make) in
-//            make.bottom.equalTo(self.imageCollectionView.snp_top)
-//            make.right.equalTo(0)
-//            make.width.equalTo(40)
-//            make.height.equalTo(30)
-//        }
         
         self.inputTextField = UITextField(frame: CGRectNull)
         self.inputTextField.backgroundColor = UIColor("#ffffff", 0.7)
@@ -293,8 +279,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
                     DataModel.fetchDatas(self.inputTextField.text!)
                         .subscribe(
                             onNext: { [weak self](datas) in
+                                print(datas)
                                 self?.datas = datas
-                                self?.imageListView.reloadData()
+                                self?.imageCollectionView.reloadData()
                             }
                         )
                         .addDisposableTo(self.disposeBag)
@@ -366,8 +353,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == imageListView {
             
         } else {
+            let name = self.datas[indexPath.section].word
             let url = self.datas[indexPath.section].thumbnails![indexPath.row]
-            self.verticalDataURLs.append(url)
+            
+            
+            let vData = VerData()
+            vData.name = name
+            vData.url = url
+            self.verticalDataURLs.append(vData)
             self.imageListView.reloadData()
             let i = NSIndexPath(forRow: self.verticalDataURLs.count - 1, inSection: 0)
             self.imageListView.scrollToItemAtIndexPath(i, atScrollPosition: .Top, animated: true)
@@ -382,12 +375,14 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
         if collectionView == self.imageListView {
-            (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row]))
+            (cell as! ImageCell).imageView.sd_setImageWithURL(NSURL(string: verticalDataURLs[indexPath.row].url!))
+            (cell as! ImageCell).nameLabel.text = verticalDataURLs[indexPath.row].name
             (cell as! ImageCell).drawable = true
         } else {
             let url = NSURL(string: datas[indexPath.section].thumbnails![indexPath.row])
             print(url)
             (cell as! ImageCell).imageView.sd_setImageWithURL(url)
+            (cell as! ImageCell).nameLabel.text = datas[indexPath.section].word
         }
         
         return cell
