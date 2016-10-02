@@ -202,10 +202,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITextFieldDelega
         print(sender.selectedSegmentIndex)
         if sender.selectedSegmentIndex == 0 {
             self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=en-US_BroadbandModel"
-            self.isJap = true
             
-        } else {
             self.isJap = false
+        } else {
+            self.isJap = true
             self.watson.endpoint = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&word_alternatives_threshold=0.9&model=ja-JP_BroadbandModel"
         }
     }
