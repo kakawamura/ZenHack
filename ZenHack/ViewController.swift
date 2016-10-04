@@ -483,8 +483,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if collectionView == imageListView {
-            let width: CGFloat = 200
-            let height: CGFloat = 200
+            let width: CGFloat = UIScreen.mainScreen().bounds.width
+            let height: CGFloat = 216
             
             return CGSizeMake(width, height)
         }
@@ -532,6 +532,7 @@ extension ViewController: UICollectionViewDataSource {
             print(url)
             (cell as! ImageCell).imageView.sd_setImageWithURL(url)
             (cell as! ImageCell).nameLabel.text = datas[indexPath.section].word
+            (cell as! ImageCell).drawable = false
         }
         
         return cell

@@ -22,6 +22,11 @@ class ImageCell: UICollectionViewCell {
                     make.top.right.bottom.left.equalTo(0)
                 }
             } else {
+                self.imageView.snp_updateConstraints{ (make) in
+                    make.top.left.equalTo(8)
+                    make.bottom.right.equalTo(-8)
+                }
+                
             }
         }
     }
